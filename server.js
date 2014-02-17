@@ -106,11 +106,11 @@ function onRequest(req,res){
 
         if(compress && encoding.match(/\bdeflate\b/)) {
             encoding = 'deflate';
-            res.writeHead(200, {'content-encoding':type,'content-encoding': encoding});
+            res.writeHead(200, {'content-type':type, 'content-encoding': encoding});
             data.pipe(zlib.createDeflate()).pipe(res);
         } else if(compress && encoding.match(/\bgzip\b/)) {
             encoding = 'gzip';
-            res.writeHead(200, {'content-encoding':type, 'content-encoding': encoding });
+            res.writeHead(200, {'content-type':type, 'content-encoding': encoding});
             data.pipe(zlib.createGzip()).pipe(res);
         } else {
             encoding = '';
